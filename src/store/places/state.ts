@@ -6,6 +6,7 @@ export interface PlacesState {
 function state(): PlacesState {
     return {
         isLoading: true,
+        userLocation: undefined
     }
 }
 

@@ -1,0 +1,19 @@
+import { useStore } from "vuex";
+import { onMounted } from "vue";
+import { StateInterface } from "@/store"
+
+export const usePlacesStore = () => {
+ 
+    const store = useStore<StateInterface>();
+
+    onMounted( ()=> {
+        if ( !store.getters['places/isUserLocationReady'] ) {
+            store.dispatch('places/getInitialLocation')
+        }
+    } )
+
+    return {
+
+    }
+
+}
