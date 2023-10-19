@@ -1,9 +1,14 @@
 <template>
-  <nav>
+  <!-- <nav>
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link>
-  </nav>
+  </nav> -->
   <router-view/>
+  <img 
+
+  class="logo"
+  src="./assets/logo.png" 
+  alt="">
 </template>
 
 <style>
@@ -27,4 +32,12 @@ nav a {
 nav a.router-link-exact-active {
   color: #42b983;
 }
+
+.logo {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 100px;
+}
+
 </style>
