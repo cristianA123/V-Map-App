@@ -1,4 +1,4 @@
-import { usePlacesStore } from "@/composables";
+import { useMapStore, usePlacesStore } from "@/composables";
 import mapboxgl from "mapbox-gl";
 import { defineComponent, onMounted, ref, watch } from "vue";
 
@@ -11,6 +11,7 @@ export default defineComponent({
         const mapElement = ref<HTMLDivElement>();
 
         const  { userLocation, isUserLocationReady} =  usePlacesStore();
+        const { setMap } = useMapStore();
 
         const initMap = async () => {
 
@@ -19,12 +20,31 @@ export default defineComponent({
 
             await Promise.resolve();
 
-          /*   const map = */ new mapboxgl.Map({
+            const map = new mapboxgl.Map({
                 container: mapElement.value,
                 style: 'mapbox://styles/mapbox/streets-v12',
                 center: userLocation.value, 
                 zoom: 15, 
                 });
+
+            const myLocationPopup = new mapboxgl.Popup()
+                .setLngLat( userLocation.value )
+                .setHTML( `
+                <h4>Aqui estoy</h4>
+                <p>Actualmente en Villa el salvador</p>
+                ` );
+
+            const myLocationMarker = new mapboxgl.Marker()
+                .setLngLat( userLocation.value )
+                .setPopup( myLocationPopup )
+                .addTo( map );
+
+            // Todo establecer el mapa en vuex
+
+            setMap(map)
+
+
+
         }
 
         onMounted( () => {
