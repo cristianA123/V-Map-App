@@ -4,7 +4,7 @@ const searchApi = axios.create( {
     baseURL: 'https://api.mapbox.com/geocoding/v5/mapbox.places',
     params: {
         limit: 5,
-        language: 'es',
+        language: 'pe',
         access_token: 'pk.eyJ1IjoiY3Jpc3RpYW5jaGlwYW5hIiwiYSI6ImNsbndmZzI5ejA3MjgybWxqYXE3c2pvYjEifQ.qiDCQKvo4OxQAga-t0yyZA'
     }
 });
